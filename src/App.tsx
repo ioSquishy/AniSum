@@ -9,16 +9,19 @@ function App() {
 
   // set default cards
   useEffect(() => {
-    let tempCards : CardProps[] = [];
-    for (let i = 0; i < 10; i++) {
-      tempCards.push({
-        id: i,
-        image_url: "https://myanimelist.net/images/anime/1806/126216.webp",
-        title: "Chainsaw Man"
+    fetch(`https://api.jikan.moe/v4/seasons/now?sfw`)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.data) {
+          console.warn("No results.");
+          return;
+        }
+        let cards : CardProps[] = [];
+        for (let item of data.data) {
+          cards.push(parseCardPropsFromSearchResult(item));
+        }
+        setCards(cards);
       });
-    }
-
-    setCards(tempCards);
   }, []);
 
   // runs every time search query is updated
@@ -27,7 +30,7 @@ function App() {
       return;
     }
 
-    fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(searchQuery.animeTitleInput)}&limit=10&sfw=true`)
+    fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(searchQuery.animeTitleInput)}&limit=10&sfw`)
       .then(response => response.json())
       .then(data => {
         if (!data.data) {
