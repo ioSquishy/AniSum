@@ -16,9 +16,9 @@ export function parseCardPropsFromSearchResult(result: any) : CardProps {
 
 export default function Card(props: CardProps) {
   return (
-    <button className="card">
+    <a href={`/anime/${props.id}`} className="card">
       <img src={props.image_url}></img>
       <p>{props.title}</p>
-    </button>
+    </a>
   );
 }

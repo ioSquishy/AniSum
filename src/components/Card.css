@@ -9,13 +9,9 @@
   grid-template-rows: 85% 15%;
 }
 
-.card, .card * {
-  height: 100%;
-  width: 100%;
-}
-
 .card img {
   object-fit: contain;
+  width: 100%;
 }
 
 .card p {
