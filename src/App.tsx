@@ -1,26 +1,34 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import './App.css'
+import Card, { type CardProps } from './components/Card'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [cards, setCards] = useState<CardProps[]>([]);
+
+  useEffect(() => {
+    let tempCards : CardProps[] = [];
+    for (let i = 0; i < 10; i++) {
+      tempCards.push({
+        id: i,
+        image_url: "https://myanimelist.net/images/anime/1806/126216.webp",
+        title: "Chainsaw Man"
+      });
+    }
+
+    setCards(tempCards);
+
+  }, []);
 
   return (
     <>
       <Header />
-      <main id="homepage">
-        <h1>Vite + React</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
+      <main>
+        <div className="card-container">
+          {
+            cards.map(card => <Card key={card.id} {...card} />)
+          }
         </div>
-        <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
-        </p>
       </main>
     </>
   )
