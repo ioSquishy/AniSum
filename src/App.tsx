@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import Header from './components/Header'
+import Header, { type HeaderSearchQuery } from './components/Header'
 import './App.css'
-import Card, { type CardProps } from './components/Card'
+import Card, { parseCardPropsFromSearchResult, type CardProps } from './components/Card'
 
 function App() {
   const [cards, setCards] = useState<CardProps[]>([]);
+  const [searchQuery, setSearchQuery] = useState<HeaderSearchQuery | null>(null);
 
+  // set default cards
   useEffect(() => {
     let tempCards : CardProps[] = [];
     for (let i = 0; i < 10; i++) {
@@ -17,12 +19,33 @@ function App() {
     }
 
     setCards(tempCards);
-
   }, []);
+
+  // runs every time search query is updated
+  useEffect(() => {
+    if (!searchQuery) {
+      return;
+    }
+
+    fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(searchQuery.animeTitleInput)}&limit=10&sfw=true`)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.data) {
+          console.warn("No results.");
+          return;
+        }
+        let cards : CardProps[] = [];
+        for (let item of data.data) {
+          cards.push(parseCardPropsFromSearchResult(item));
+        }
+        setCards(cards);
+      });
+
+  }, [searchQuery])
 
   return (
     <>
-      <Header />
+      <Header onSearch={setSearchQuery} />
       <main>
         <div className="card-container">
           {

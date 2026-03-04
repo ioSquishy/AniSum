@@ -6,11 +6,19 @@ export interface CardProps {
   title: string,
 }
 
+export function parseCardPropsFromSearchResult(result: any) : CardProps {
+  return {
+    id: result.mal_id,
+    image_url: result.images.webp.image_url,
+    title: result.title,
+  }
+}
+
 export default function Card(props: CardProps) {
   return (
     <button className="card">
       <img src={props.image_url}></img>
-      <caption>{props.title}</caption>
+      <p>{props.title}</p>
     </button>
   );
 }

@@ -1,21 +1,27 @@
 .card {
-  width: 215px;
-  height: 320px;
   background-color: rgb(187, 187, 187);
   border-radius: 5px;
   padding: 5px;
   border-style: ridge;
   border-width: 2px;
   border-color: black;
+  display: grid;
+  grid-template-rows: 85% 15%;
+}
+
+.card, .card * {
+  height: 100%;
+  width: 100%;
 }
 
 .card img {
-  height: 90%;
+  object-fit: contain;
 }
 
-.card caption {
-  display: block;
+.card p {
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: black;
-  width: 100%;
-  text-align: center;
+  align-content: center;
+  overflow: hidden;
 }
