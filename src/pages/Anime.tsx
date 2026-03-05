@@ -82,7 +82,7 @@ export default function Anime() {
               animeInfo?.genres.map(name => <span className="bubble" key={name}>{name}</span>)
             }
             {
-              animeInfo?.genres.map(name => <span className="bubble" key={name}>{name}</span>)
+              animeInfo?.themes.map(name => <span className="bubble" key={name}>{name}</span>)
             }
           </div>
 
