@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import Header, { type HeaderSearchQuery } from './components/Header'
 import './App.css'
 import Card, { parseCardPropsFromSearchResult, type CardProps } from './components/Card'
-import { Route, Routes } from 'react-router-dom';
-import Anime from './pages/Anime';
 
 function App() {
   const [cards, setCards] = useState<CardProps[]>([]);
@@ -50,21 +48,14 @@ function App() {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={
-          <>
-            <Header onSearch={setSearchQuery} />
-            <main>
-              <div className="card-container">
-                {
-                  cards.map(card => <Card key={card.id} {...card} />)
-                }
-              </div>
-            </main>
-          </>
-        } />
-        <Route path="/anime/:id" element={<Anime />}></Route>
-      </Routes>
+      <Header onSearch={setSearchQuery} />
+      <main>
+        <div className="card-container">
+          {
+            cards.map(card => <Card key={card.id} {...card} />)
+          }
+        </div>
+      </main>
     </>
   )
 }
