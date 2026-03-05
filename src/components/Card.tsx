@@ -4,7 +4,7 @@ import './Card.css'
 export interface CardProps {
   id: number,
   image_url: string,
-  title: string,
+  title: string
 }
 
 export function parseCardPropsFromSearchResult(result: any) : CardProps {

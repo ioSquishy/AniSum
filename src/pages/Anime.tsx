@@ -87,10 +87,10 @@ export default function Anime() {
           </div>
 
           <div className="airing-info bubble-wrapper">
-              <span className="bubble">{animeInfo?.mediaType}</span>
-              <span className="bubble">{animeInfo?.isAiring ? "Airing" : `Aired ${animeInfo?.seasonAired?.toUpperCase() ?? ""} ${animeInfo?.yearAired}`}</span>
-              <span className="bubble">{animeInfo?.ageRating}</span>
-            </div>
+            <span className="bubble">{animeInfo?.mediaType}</span>
+            <span className="bubble">{animeInfo?.isAiring ? "Airing" : `Aired ${animeInfo?.seasonAired?.toUpperCase() ?? ""} ${animeInfo?.yearAired}`}</span>
+            <span className="bubble">{animeInfo?.ageRating}</span>
+          </div>
 
           <div>
             <h2>Synopsis</h2>

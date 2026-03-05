@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import Header, { type HeaderSearchQuery } from './components/Header'
-import './App.css'
-import Card, { parseCardPropsFromSearchResult, type CardProps } from './components/Card'
 import { useLocation } from 'react-router-dom';
+import Header, { type HeaderSearchQuery } from './components/Header'
+import Card, { parseCardPropsFromSearchResult, type CardProps } from './components/Card'
+import './App.css'
+
 
 function App() {
   const location = useLocation();
@@ -10,7 +11,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState<HeaderSearchQuery | null>(null);
   const [noResults, setNoResults] = useState(false);
 
-  async function setCurrentSeasonCards() {
+  function setCurrentSeasonCards() {
     fetch(`https://api.jikan.moe/v4/seasons/now?sfw`)
       .then(response => response.json())
       .then(data => {
@@ -30,16 +31,15 @@ function App() {
       });
   }
 
-  // set default cards
+  // runs on first load
   useEffect(() => {
+    // set search to what wass sent by previous page
     if (location.state?.searchQuery) {
       setSearchQuery(location.state.searchQuery);
       return;
     }
-
+    // or set to null which by extension sets it to the current season
     setSearchQuery(null);
-    setCurrentSeasonCards()
-    
   }, []);
 
   // runs every time search query is updated
