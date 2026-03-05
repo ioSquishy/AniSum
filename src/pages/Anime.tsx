@@ -1,22 +1,17 @@
-// interface AnimeProps {
-//   id: number,
-//   defaultTitle: string,
-//   japaneseTitle: string,
-//   mediaType: string, // TV, Movie, OVA, etc.
-//   airingStatus: string,
-//   seasonAired: string,
-//   yearAired: number,
-//   ageRating: string,
-//   synopsis: string,
-//   studioNames: string[],
-//   genres: string[],
-//   themes: string[]
-// }
+import { useNavigate, useParams } from "react-router-dom";
+import Header, { type HeaderSearchQuery } from "../components/Header";
+
 
 export default function Anime() {
+  const navigate = useNavigate();
+  const { animeId } = useParams();
+  function handleHeaderSearch(query: HeaderSearchQuery) {
+    navigate('/', { state: { searchQuery: query } });
+  }
+
   return (
     <>
-      <h1>hi</h1>
+      <Header onSearch={handleHeaderSearch}/>
     </>
   );
 }

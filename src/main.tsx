@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/anime/:id" element={<Anime />}></Route>
+        <Route path="/anime/:animeId" element={<Anime />}></Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>,

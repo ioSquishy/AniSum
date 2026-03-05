@@ -2,13 +2,20 @@ import { useEffect, useState } from 'react'
 import Header, { type HeaderSearchQuery } from './components/Header'
 import './App.css'
 import Card, { parseCardPropsFromSearchResult, type CardProps } from './components/Card'
+import { useLocation } from 'react-router-dom';
 
 function App() {
+  const location = useLocation();
   const [cards, setCards] = useState<CardProps[]>([]);
   const [searchQuery, setSearchQuery] = useState<HeaderSearchQuery | null>(null);
 
   // set default cards
   useEffect(() => {
+    if (location.state?.searchQuery) {
+      setSearchQuery(location.state.searchQuery);
+      return;
+    }
+
     fetch(`https://api.jikan.moe/v4/seasons/now?sfw`)
       .then(response => response.json())
       .then(data => {
