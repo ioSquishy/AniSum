@@ -62,7 +62,7 @@ export default function Anime() {
   return (
     <>
       <Header onSearch={handleHeaderSearch}/>
-      <div hidden={animeInfo === null} className="info-container">
+      <div hidden={!animeInfo || failedLoad} className="info-container">
         <img src={animeInfo?.imageUrl}></img>
         <div className="details-container">
           <div className="titles">
@@ -98,8 +98,8 @@ export default function Anime() {
           </div>
         </div>
       </div>
-      <p hidden={animeInfo !== null || failedLoad}>loading...</p>
-      <p hidden={!failedLoad}>Failed to find anime with ID {animeId} :{'('}</p>
+      <p hidden={animeInfo !== null || failedLoad} className="error">loading...</p>
+      <p hidden={!failedLoad} className="error">Failed to find anime with ID {animeId} :{'('}</p>
     </>
   );
 }

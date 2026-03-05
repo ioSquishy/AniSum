@@ -41,3 +41,9 @@ button:hover {
 button:focus, button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+p.error {
+  color: rgb(255, 40, 40);
+  font-weight: bold;
+  text-align: center;
+}

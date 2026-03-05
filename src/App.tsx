@@ -78,7 +78,7 @@ function App() {
             cards.map(card => <Card key={card.id} {...card} />)
           }
         </div>
-        <p hidden={noResults}>No results</p>
+        <p hidden={!noResults} className="error">No results</p>
       </main>
     </>
   );
