@@ -27,7 +27,7 @@ export default function Header(props: HeaderProps) {
     <header>
       <form>
         <label htmlFor='search'>Search by name:</label>
-        <input ref={searchInputRef} type='search' id='search' placeholder='Chainsaw Man' />
+        <input ref={searchInputRef} type='search' id='search' placeholder='Tensura' />
         <button type="submit" onClick={e => {handleSearch(e)}}>Search</button>
       </form>
     </header>
