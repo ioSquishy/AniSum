@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Card.css'
 
 export interface CardProps {
@@ -16,9 +17,9 @@ export function parseCardPropsFromSearchResult(result: any) : CardProps {
 
 export default function Card(props: CardProps) {
   return (
-    <a href={`/anime/${props.id}`} className="card">
+    <Link to={`/anime/${props.id}`} className="card">
       <img src={props.image_url}></img>
       <p>{props.title}</p>
-    </a>
+    </Link>
   );
 }
